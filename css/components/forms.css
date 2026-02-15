@@ -1,0 +1,158 @@
+/* ========== FORMULÁRIOS ========== */
+.form-control {
+    padding: 0.5rem;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 6px;
+    font-family: var(--fonte-principal);
+    font-size: 0.95rem;
+    min-width: 150px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--vermelho-principal);
+}
+
+.form-control:focus-visible {
+    outline: 2px solid var(--vermelho-principal);
+    outline-offset: 2px;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group-50 {
+    flex: 1;
+}
+
+.form-group-50 label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--cinza-texto);
+}
+
+/* ========== DATA GASTO CONTAINER ========== */
+.data-gasto-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.data-gasto-container .gasto-input {
+    flex: 1;
+}
+
+/* ========== FORMULÁRIOS GASTOS ========== */
+.gastos-form-container small {
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Destaque para data de gasto */
+.form-group-gasto input[type="date"] {
+    border-color: var(--azul-info);
+}
+
+.form-group-gasto input[type="date"]:focus {
+    border-color: var(--azul-info);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* ========== FILTRO DE TURNO ========== */
+.filtro-turno {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filtro-turno .form-control {
+    min-width: 180px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== MODAL ADMIN ========== */
+.modal-admin {
+    max-width: 900px !important;
+    width: 95%;
+}
+
+.admin-section {
+    background: var(--cinza-claro);
+    border-radius: var(--borda-arredondada);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-section h4 {
+    color: var(--vermelho-principal);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.admin-form .form-group {
+    margin-bottom: 0;
+}
+
+.admin-form .form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: var(--cinza-texto);
+    font-weight: 500;
+}
+
+.admin-form .btn-primary {
+    height: 42px;
+    margin-top: 1.5rem;
+}
+
+/* Tema escuro */
+[data-tema="escuro"] .admin-section {
+    background: var(--cinza-box);
+    border: 1px solid var(--cinza-borda);
+}
+
+[data-tema="escuro"] .admin-section h4 {
+    color: var(--branco);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form .btn-primary {
+        margin-top: 0.5rem;
+    }
+}

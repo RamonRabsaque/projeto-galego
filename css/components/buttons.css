@@ -1,0 +1,229 @@
+/* ========== BOTÕES ========== */
+.btn-primary , .btnAdmin{
+    background: var(--amarelo-principal);
+    color: var(--vermelho-principal);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transicao-padrao);
+}
+
+.btn-primary:hover {
+    background: var(--amarelo-escuro);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--cinza-claro);
+    color: var(--cinza-texto);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transicao-padrao);
+}
+
+.btn-secondary:hover {
+    background: #d1d9e6;
+}
+
+.btn-data-hoje {
+    background: var(--azul-info);
+    color: var(--branco);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    transition: var(--transicao-padrao);
+    white-space: nowrap;
+}
+
+.btn-data-hoje:hover {
+    background: #1976d2;
+    transform: translateY(-2px);
+}
+
+.btn-gasto {
+    background: var(--amarelo-principal);
+    color: var(--vermelho-principal);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transicao-padrao);
+    margin-top: 0.5rem;
+}
+
+.btn-gasto:hover {
+    background: var(--amarelo-escuro);
+    transform: translateY(-2px);
+}
+
+.btn-fornecedor,
+.btn-boleto {
+    background: var(--amarelo-principal);
+    color: var(--vermelho-principal);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transicao-padrao);
+    margin-top: 0.5rem;
+}
+
+.btn-fornecedor:hover,
+.btn-boleto:hover {
+    background: var(--amarelo-escuro);
+    transform: translateY(-2px);
+}
+
+/* Botões de ação em tabelas */
+.btn-acao-venda {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transicao-padrao);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.btn-editar-venda {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--azul-info);
+}
+
+.btn-editar-venda:hover {
+    background: rgba(33, 150, 243, 0.2);
+}
+
+.btn-excluir-venda {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--vermelho-alerta);
+}
+
+.btn-excluir-venda:hover {
+    background: rgba(244, 67, 54, 0.2);
+}
+
+.btn-gasto-action {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transicao-padrao);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.btn-gasto-edit {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--azul-info);
+}
+
+.btn-gasto-edit:hover {
+    background: rgba(33, 150, 243, 0.2);
+}
+
+.btn-gasto-delete {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--vermelho-alerta);
+}
+
+.btn-gasto-delete:hover {
+    background: rgba(244, 67, 54, 0.2);
+}
+
+.btn-boleto-action {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transicao-padrao);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.btn-boleto-pagar {
+    background: rgba(76, 175, 80, 0.1);
+    color: var(--verde-sucesso);
+}
+
+.btn-boleto-pagar:hover {
+    background: rgba(76, 175, 80, 0.2);
+}
+
+.btn-boleto-edit {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--azul-info);
+}
+
+.btn-boleto-edit:hover {
+    background: rgba(33, 150, 243, 0.2);
+}
+
+.btn-boleto-delete {
+    background: rgba(244, 67, 54, 0.1);
+    color: var(--vermelho-alerta);
+}
+
+.btn-boleto-delete:hover {
+    background: rgba(244, 67, 54, 0.2);
+}
+
+
+#btnAdicionarVenda {
+    padding: 0.4rem 0.8rem !important;
+    /* Reduz o padding */
+    font-size: 0.85rem !important;
+    /* Fonte menor */
+    width: auto !important;
+    /* Largura automática */
+    margin-top: 0.5rem !important;
+    /* Margem superior reduzida */
+    display: inline-flex !important;
+    /* Mantém inline-flex */
+}
+
+#btnRelatorioGastos,
+#btnRelatorioBoletos {
+    background: var(--amarelo-principal);
+    color: var(--vermelho-principal);
+    border: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao-padrao);
+}

@@ -1,0 +1,15 @@
+/* ========== RESET E ESTILOS GERAIS ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: var(--fonte-principal);
+    background: linear-gradient(135deg, var(--roxo-fundo) 0%, #a5b4fc 100%);
+    color: #333;
+    overflow-x: hidden;
+}

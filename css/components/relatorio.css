@@ -1,0 +1,22 @@
+/* ========== RELATÓRIOS CONTENT ========== */
+.relatorios-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 1.8rem; /* AUMENTADO: de 1.5rem para 1.8rem */
+    margin-top: 1.5rem;
+    padding: 0 0.5rem; /* ADICIONADO: espaçamento interno */
+}
+
+.relatorio-card {
+    background: var(--branco);
+    border-radius: var(--borda-arredondada);
+    padding: 1.8rem; /* AUMENTADO: de 1.5rem para 1.8rem */
+    box-shadow: var(--sombra-suave);
+}
+
+.relatorio-card.full-width {
+    grid-column: 1 / -1;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+}

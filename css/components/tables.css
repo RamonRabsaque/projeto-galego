@@ -1,0 +1,41 @@
+/* ========== TABELAS ========== */
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--cinza-borda);
+    margin-top: 0.5rem; /* ADICIONADO: espaçamento superior */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.table th {
+    padding: 1rem 1.2rem; /* AUMENTADO: padding lateral */
+}
+
+.table td {
+    padding: 0.8rem 1.2rem; /* AUMENTADO: padding lateral */
+}
+
+/* ========== TABLE HEADERS ========== */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.2rem; /* ADICIONADO: alinhamento */
+}
+
+.table-header-gastos,
+.table-header-boletos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 0.2rem; /* ADICIONADO: alinhamento */
+}

@@ -1,0 +1,268 @@
+/* ========== TEMA ESCURO ========== */
+[data-tema="escuro"] {
+    --roxo-fundo: #1a1a2e;
+    --cinza-claro: #2d3047;
+    --cinza-box: #2d3047;
+    --cinza-borda: #404258;
+    --cinza-texto: #b0b3c1;
+    --branco: #f0f0f0;
+    --vermelho-principal: #ff6b6b;
+    --vermelho-secundario: #ff5252;
+    --amarelo-principal: #ffd166;
+    --amarelo-escuro: #ffc145;
+}
+
+[data-tema="escuro"] body {
+    background: linear-gradient(135deg, var(--roxo-fundo) 0%, #16213e 100%);
+    color: var(--branco);
+}
+
+[data-tema="escuro"] #telaLogin {
+    background: linear-gradient(135deg, var(--roxo-fundo) 0%, #16213e 100%);
+}
+
+[data-tema="escuro"] .container,
+[data-tema="escuro"] .login-container,
+[data-tema="escuro"] .sales-form,
+[data-tema="escuro"] .sales-table-container,
+[data-tema="escuro"] .expenses-section,
+[data-tema="escuro"] .summary-card,
+[data-tema="escuro"] .gastos-form-container,
+[data-tema="escuro"] .gastos-analytics,
+[data-tema="escuro"] .gastos-table-container,
+[data-tema="escuro"] .relatorio-card,
+[data-tema="escuro"] .turno-card,
+[data-tema="escuro"] .fornecedores-form-container,
+[data-tema="escuro"] .boletos-form-container,
+[data-tema="escuro"] .boletos-table-container,
+[data-tema="escuro"] .fornecedores-lista,
+[data-tema="escuro"] .modal-content {
+    background: var(--cinza-box);
+    color: var(--branco);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-tema="escuro"] .table {
+    background: var(--cinza-box);
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .table thead {
+    background: linear-gradient(135deg, var(--vermelho-principal) 0%, var(--vermelho-secundario) 100%);
+}
+
+[data-tema="escuro"] .table tbody tr {
+    border-bottom: 1px solid var(--cinza-borda);
+}
+
+[data-tema="escuro"] .table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-tema="escuro"] .table th {
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .table td {
+    color: var(--cinza-texto);
+}
+
+[data-tema="escuro"] .form-control,
+[data-tema="escuro"] .login-input,
+[data-tema="escuro"] .gasto-input,
+[data-tema="escuro"] .fornecedor-input,
+[data-tema="escuro"] .boleto-input {
+    background: var(--cinza-claro);
+    border-color: var(--cinza-borda);
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .form-control:focus,
+[data-tema="escuro"] .login-input:focus,
+[data-tema="escuro"] .gasto-input:focus,
+[data-tema="escuro"] .fornecedor-input:focus,
+[data-tema="escuro"] .boleto-input:focus {
+    border-color: var(--vermelho-principal);
+    background: var(--cinza-claro);
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .notification {
+    background: var(--cinza-box);
+    color: var(--branco);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-tema="escuro"] .turno-header h3,
+[data-tema="escuro"] .dashboard-header h2,
+[data-tema="escuro"] .sales-form h3,
+[data-tema="escuro"] .table-header h3,
+[data-tema="escuro"] .expenses-section h3,
+[data-tema="escuro"] .gastos-form-container h3,
+[data-tema="escuro"] .table-header-gastos h3,
+[data-tema="escuro"] .relatorio-card h3,
+[data-tema="escuro"] .fornecedores-form-container h3,
+[data-tema="escuro"] .boletos-form-container h3,
+[data-tema="escuro"] .table-header-boletos h3,
+[data-tema="escuro"] .fornecedores-lista h4,
+[data-tema="escuro"] .modal-header h3,
+[data-tema="escuro"] .fornecedor-info h4 {
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .turno-metrica span,
+[data-tema="escuro"] .form-group-50 label,
+[data-tema="escuro"] .form-group-gasto label,
+[data-tema="escuro"] .form-group-fornecedor label,
+[data-tema="escuro"] .form-group-boleto label,
+[data-tema="escuro"] .card-title,
+[data-tema="escuro"] .stat-card span,
+[data-tema="escuro"] .resumo-item span {
+    color: var(--cinza-texto);
+}
+
+[data-tema="escuro"] .card-value,
+[data-tema="escuro"] .stat-card strong,
+[data-tema="escuro"] .resumo-item strong {
+    color: var(--branco);
+}
+
+[data-tema="escuro"] .btn-tema {
+    background: var(--amarelo-principal);
+    color: var(--roxo-fundo);
+    border-color: var(--amarelo-principal);
+}
+
+[data-tema="escuro"] .btn-tema:hover {
+    background: var(--amarelo-escuro);
+    color: var(--roxo-fundo);
+}
+
+[data-tema="escuro"] .btn-data-hoje,
+[data-tema="escuro"] .btn-fornecedor,
+[data-tema="escuro"] .btn-boleto {
+    background: var(--amarelo-principal);
+    color: var(--roxo-fundo);
+}
+
+[data-tema="escuro"] .btn-data-hoje:hover,
+[data-tema="escuro"] .btn-fornecedor:hover,
+[data-tema="escuro"] .btn-boleto:hover {
+    background: var(--amarelo-escuro);
+    color: var(--roxo-fundo);
+}
+
+[data-tema="escuro"] .badge-data-passada,
+[data-tema="escuro"] .data-passada-indicator {
+    background: rgba(255, 152, 0, 0.2);
+    border-color: rgba(255, 152, 0, 0.4);
+    color: var(--amarelo-principal);
+}
+
+[data-tema="escuro"] .resultado-item:hover {
+    background: var(--cinza-borda);
+}
+
+[data-tema="escuro"] .stat-card {
+    background: var(--cinza-claro);
+}
+
+[data-tema="escuro"] .turno-card.manha {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 152, 0, 0.1) 100%);
+}
+
+[data-tema="escuro"] .turno-card.tarde {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.2) 0%, rgba(33, 150, 243, 0.1) 100%);
+}
+
+[data-tema="escuro"] .turno-card.total-dia {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.1) 100%);
+}
+
+[data-tema="escuro"] .chartjs-render-monitor {
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* ========== RESPONSIVIDADE TEMA ESCURO ========== */
+@media (max-width: 1100px) {
+    [data-tema="escuro"] .gastos-content {
+        grid-template-columns: 1fr;
+    }
+
+    [data-tema="escuro"] .boletos-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    [data-tema="escuro"] .turno-resumo {
+        grid-template-columns: 1fr;
+    }
+
+    [data-tema="escuro"] .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    [data-tema="escuro"] .sales-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== CORREÇÃO CARDS TRANSPARENTES NO TEMA ESCURO ========== */
+[data-tema="escuro"] .turno-card {
+    background: transparent !important;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+[data-tema="escuro"] .turno-card.manha {
+    background: transparent !important;
+}
+
+[data-tema="escuro"] .turno-card.tarde {
+    background: transparent !important;
+}
+
+[data-tema="escuro"] .turno-card.total-dia {
+    background: transparent !important;
+}
+
+[data-tema="escuro"] .turno-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* ========== TURNOS - CARDS TRANSPARENTES COM BORDA DESTACADA ========== */
+.turno-card {
+    background: transparent !important;
+    border-radius: var(--borda-arredondada);
+    padding: 1.5rem;
+    box-shadow: none;
+    transition: var(--transicao-padrao);
+    border-top: 6px solid transparent;
+    /* BORDA MAIS GROSSA */
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.turno-card:hover {
+    transform: translateY(-5px);
+    border-top-width: 6px;
+}
+
+.turno-card.manha {
+    border-top-color: var(--laranja-manha);
+}
+
+.turno-card.tarde {
+    border-top-color: var(--azul-tarde);
+}
+
+.turno-card.total-dia {
+    border-top-color: var(--verde-sucesso);
+}

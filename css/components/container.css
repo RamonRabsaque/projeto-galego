@@ -1,0 +1,102 @@
+/* ========== CONTAINER PRINCIPAL ========== */
+.container {
+    width: 100%;
+    max-width: 98vw;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border-radius: var(--borda-arredondada);
+    background: var(--branco);
+    box-shadow: var(--sombra-destaque);
+    overflow: hidden;
+    background-color: #ffffffc2;
+    display: none;
+    padding: 1.5rem 2rem;
+    /* ADICIONADO: padding nas laterais */
+}
+
+/* ========== DASHBOARD HEADER ========== */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    /* AUMENTADO: de 1.5rem para 2rem */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    /* AUMENTADO: de 1rem para 1.5rem */
+    padding: 0;
+    /* REMOVIDO: padding que estava aqui */
+}
+
+.dashboard-header h2 {
+    font-size: 1.8rem;
+    color: var(--vermelho-principal);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0;
+    /* ADICIONADO: garantir que não tem margem */
+}
+
+.dashboard-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.date-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--branco);
+    border: 2px solid var(--cinza-borda);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+
+/* ========== RELÓGIO ========== */
+.clock-display {
+    background: linear-gradient(145deg, var(--vermelho-principal), var(--vermelho-secundario));
+    color: var(--amarelo-principal);
+    /* TROCADO: texto em amarelo */
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    /* AUMENTADO: borda mais arredondada */
+    font-weight: 700;
+    /* MAIS NEGRITO */
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    /* AUMENTADO: fonte maior */
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
+    /* ADICIONADO: brilho amarelo */
+    letter-spacing: 2px;
+    /* ADICIONADO: espaçamento entre letras */
+    border: 1px solid rgba(255, 184, 0, 0.5);
+    /* ADICIONADO: borda amarela sutil */
+    text-shadow: 0 0 5px rgba(255, 184, 0, 0.5);
+    /* ADICIONADO: brilho no texto */
+}
+
+/* Opção 2: Gradiente no texto */
+
+/* Opção 3: Relógio neon */
+.clock-display {
+    background: var(--vermelho-principal);
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    min-width: 120px;
+    text-align: center;
+    letter-spacing: 2px;
+    border: 1px solid #ffffff3d;
+}
+

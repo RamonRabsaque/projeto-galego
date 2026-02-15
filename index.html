@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matutinho Aldeota - Sistema de Gestão</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- CSS Components -->
+    <link rel="stylesheet" href="css/components/variables.css">
+    <link rel="stylesheet" href="css/components/reset.css">
+    <link rel="stylesheet" href="css/components/login.css">
+    <link rel="stylesheet" href="css/components/header.css">
+    <link rel="stylesheet" href="css/components/container.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/forms.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/components/tables.css">
+    <link rel="stylesheet" href="css/components/modal.css">
+    <link rel="stylesheet" href="css/components/notifications.css">
+    <link rel="stylesheet" href="css/components/utilities.css">
+    <link rel="stylesheet" href="css/components/boletos.css">
+    <link rel="stylesheet" href="css/components/relatorios.css">
+
+
+
+
+    <!-- Themes -->
+    <link rel="stylesheet" href="css/themes/dark-theme.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- NOTIFICATION AREA -->
+    <div id="notification-area"></div>
+
+    <!-- TELA DE LOGIN -->
+    <div id="telaLogin">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">🥐 Matutinho Aldeota</div>
+                <div class="slogan">Sistema de Gestão</div>
+            </div>
+            <div class="login-body">
+                <div id="loginMessage" class="login-message"></div>
+                <form id="loginForm">
+                    <div class="login-form-group">
+                        <label><i class="fas fa-user"></i> Usuário</label>
+                        <input type="text" id="username" class="login-input" placeholder="Digite seu usuário"
+                            value="admin" autocomplete="off">
+                    </div>
+                    <div class="login-form-group">
+                        <label><i class="fas fa-lock"></i> Senha</label>
+                        <div class="password-container">
+                            <input type="password" id="password" class="login-input" placeholder="Digite sua senha"
+                                value="123">
+                            <button type="button" id="togglePassword" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnLogin" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Acessar Sistema
+                    </button>
+                </form>
+            </div>
+            <div class="login-footer">
+                <small>© 2026 Matutinho Aldeota</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER PRINCIPAL -->
+    <header>
+        <div class="logo">
+            <div class="logo1">
+                <img src="assets/logo/Logo-1.PNG" alt="Matutinho Aldeota">
+            </div>
+        </div>
+        <div class="menu-buttons">
+            <button id="btnVendas"><i class="fas fa-cash-register"></i> Vendas</button>
+            <button id="btnGastos"><i class="fas fa-chart-line"></i> Gastos</button>
+            <button id="btnRelatorios"><i class="fas fa-chart-bar"></i> Relatórios</button>
+            <button id="btnBoletos"><i class="fas fa-file-invoice"></i> Boletos</button>
+            <button id="btnAdmin" style="display: flex; flex-direction: column; align-items: center; padding: 1rem;">
+                <i class="fas fa-users-cog"></i> Admin
+            </button>
+            <button id="btnTema" class="btn-tema">
+                <i class="fas fa-moon"></i>
+                <span class="tema-texto">Escuro</span>
+            </button>
+            <button id="btnSair"><i class="fas fa-sign-out-alt"></i> Sair</button>
+        </div>
+    </header>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
+        <!-- TELA DE VENDAS -->
+        <div id="telaVendas" style="display: none;">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-cash-register"></i> Vendas do Dia</h2>
+                <div class="dashboard-controls">
+                    <div class="date-filter">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="filtroData" class="form-control">
+                    </div>
+                    <div class="filtro-turno">
+                        <i class="fas fa-filter"></i>
+                        <select id="filtroTurno" class="form-control">
+                            <option value="todos">Todos os Turnos</option>
+                            <option value="manha">Manhã</option>
+                            <option value="tarde">Tarde</option>
+                        </select>
+                    </div>
+                    <div class="clock-display" id="relogio">00:00:00</div>
+                    <button class="btn-primary" id="btnGerarPDF">
+                        <i class="fas fa-file-pdf"></i> Gerar PDF
+                    </button>
+                </div>
+            </div>
+
+            <div class="turno-resumo">
+                <div class="turno-card manha">
+                    <div class="turno-header">
+                        <i class="fas fa-sun"></i>
+                        <h3>Turno da Manhã</h3>
+                    </div>
+                    <div class="turno-body">
+                        <div class="turno-metrica">
+                            <span>Total Vendas:</span>
+                            <strong id="vendasManha">R$ 0,00</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Quantidade:</span>
+                            <strong id="qtdVendasManha">0</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Ticket Médio:</span>
+                            <strong id="ticketManha">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="turno-card tarde">
+                    <div class="turno-header">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>Turno da Tarde</h3>
+                    </div>
+                    <div class="turno-body">
+                        <div class="turno-metrica">
+                            <span>Total Vendas:</span>
+                            <strong id="vendasTarde">R$ 0,00</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Quantidade:</span>
+                            <strong id="qtdVendasTarde">0</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Ticket Médio:</span>
+                            <strong id="ticketTarde">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="turno-card total-dia">
+                    <div class="turno-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Total do Dia</h3>
+                    </div>
+                    <div class="turno-body">
+                        <div class="turno-metrica">
+                            <span>Total Vendas:</span>
+                            <strong id="totalVendasDia">R$ 0,00</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Total Saídas:</span>
+                            <strong style="color: var(--vermelho-alerta);" id="totalSaidasDia">R$ 0,00</strong>
+                        </div>
+                        <div class="turno-metrica">
+                            <span>Saldo:</span>
+                            <strong id="saldoDia">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sales-section">
+                <div class="sales-form">
+                    <h3><i class="fas fa-plus-circle"></i> Registrar Nova Venda</h3>
+                    <form id="formVenda">
+                        <div class="form-group-50">
+                            <label>Valor da Venda</label>
+                            <input type="text" id="valorVenda" class="form-control" placeholder="R$ 0,00">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group-50">
+                                <label>Forma de Pagamento</label>
+                                <select id="formaPagamento" class="form-control">
+                                    <option value="">Selecione...</option>
+                                    <option value="dinheiro">Dinheiro</option>
+                                    <option value="pix">Pix</option>
+                                    <option value="credito">Cartão Crédito</option>
+                                    <option value="debito">Cartão Débito</option>
+                                </select>
+                            </div>
+                            <div class="form-group-50">
+                                <label>Turno</label>
+                                <select id="turnoVenda" class="form-control">
+                                    <option value="">Selecione...</option>
+                                    <option value="manha">Manhã</option>
+                                    <option value="tarde">Tarde</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" id="btnAdicionarVenda" class="btn-primary"
+                            style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-check"></i> Registrar Venda
+                        </button>
+                    </form>
+                </div>
+
+                <div class="sales-table-container">
+                    <div class="table-header">
+                        <h3><i class="fas fa-list"></i> Vendas do Dia</h3>
+                        <span id="totalVendasCount" class="badge success">0 vendas</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Turno</th>
+                                    <th>Valor</th>
+                                    <th>Pagamento</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaVendas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expenses-section">
+                <h3><i class="fas"></i> Saídas / Retiradas</h3>
+                <div class="expenses-form">
+                    <input type="text" id="valorSaida" class="form-control" placeholder="Valor">
+                    <input type="text" id="descricaoSaida" class="form-control" placeholder="Descrição da saída">
+                    <button id="btnAdicionarSaida" class="btn-primary">
+                        <i class="fas fa-plus"></i> Adicionar Saída
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Valor</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaSaidas"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA DE GASTOS -->
+        <div id="telaGastos" style="display: none;">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chart-line"></i> Controle de Gastos</h2>
+                <div class="dashboard-controls">
+                    <div class="date-filter">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="month" id="filtroMesGastos" class="form-control">
+                    </div>
+                    <button class="btn-secondary" id="btnRelatorioGastos">
+                        <i class="fas fa-file-pdf"></i> Relatório
+                    </button>
+                </div>
+            </div>
+
+            <div class="summary-cards">
+                <div class="summary-card total">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fas fa-money-bill"></i> Total do Mês</span>
+                    </div>
+                    <div class="card-value" id="totalGastosMes">R$ 0,00</div>
+                    <small class="text-muted" id="variacaoGastos">0% vs mês anterior</small>
+                </div>
+                <div class="summary-card mensal">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fas fa-chart-bar"></i> Média Mensal</span>
+                    </div>
+                    <div class="card-value" id="mediaGastosMensal">R$ 0,00</div>
+                    <small class="text-muted" id="comparacaoMedia">últimos 6 meses</small>
+                </div>
+                <div class="summary-card categoria">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fas fa-tag"></i> Maior Categoria</span>
+                    </div>
+                    <div class="card-value" id="maiorCategoria">-</div>
+                    <small class="text-muted" id="valorMaiorCategoria">R$ 0,00</small>
+                </div>
+                <div class="summary-card meta">
+                    <div class="card-header">
+                        <span class="card-title"><i class="fas fa-bullseye"></i> Meta Mensal</span>
+                    </div>
+                    <div class="card-value">R$ 5.000,00</div>
+                    <small class="text-muted" id="progressoMeta">0% utilizado</small>
+                </div>
+            </div>
+
+            <div class="gastos-content">
+                <div class="gastos-form-container">
+                    <h3><i class="fas fa-plus-circle"></i> <span id="formGastoTitulo">Novo Gasto</span></h3>
+                    <form id="formGasto" class="gastos-form">
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-tag"></i> Descrição</label>
+                            <input type="text" id="gastoDescricao" class="gasto-input"
+                                placeholder="Ex: Compra de farinha" required>
+                        </div>
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-dollar-sign"></i> Valor</label>
+                            <input type="text" id="gastoValor" class="gasto-input" placeholder="R$ 0,00" required>
+                        </div>
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-list"></i> Categoria</label>
+                            <select id="gastoCategoria" class="gasto-input" required>
+                                <option value="">Selecione...</option>
+                                <option value="insumos">Insumos</option>
+                                <option value="funcionarios">Funcionários</option>
+                                <option value="aluguel">Aluguel</option>
+                                <option value="manutencao">Manutenção</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-calendar"></i> Data</label>
+                            <div class="data-gasto-container">
+                                <input type="date" id="gastoData" class="gasto-input" required>
+                                <button type="button" id="btnDataHoje" class="btn-data-hoje">
+                                    <i class="fas fa-calendar-check"></i> Hoje
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-clock"></i> Tipo</label>
+                            <select id="gastoTipo" class="gasto-input" required>
+                                <option value="">Selecione...</option>
+                                <option value="fixo">Fixo</option>
+                                <option value="variavel">Variável</option>
+                                <option value="emergencia">Emergência</option>
+                                <option value="investimento">Investimento</option>
+                            </select>
+                        </div>
+                        <div class="form-group-gasto">
+                            <label><i class="fas fa-align-left"></i> Observação (opcional)</label>
+                            <textarea id="gastoObservacao" class="gasto-input gasto-textarea"
+                                placeholder="Digite uma observação..."></textarea>
+                        </div>
+                        <button type="submit" id="btnRegistrarGasto" class="btn-gasto">
+                            <i class="fas fa-save"></i> Registrar Gasto
+                        </button>
+                    </form>
+                </div>
+
+                <div class="gastos-analytics">
+                    <div class="chart-container">
+                        <canvas id="gastosChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoriasChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gastos-table-container">
+                <div class="table-header-gastos">
+                    <h3><i class="fas fa-list"></i> Histórico de Gastos</h3>
+                    <div class="filtros-gastos">
+                        <select id="filtroCategoriaGastos" class="form-control">
+                            <option value="todas">Todas Categorias</option>
+                            <option value="insumos">Insumos</option>
+                            <option value="funcionarios">Funcionários</option>
+                            <option value="aluguel">Aluguel</option>
+                            <option value="manutencao">Manutenção</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <select id="filtroTipoGasto" class="form-control">
+                            <option value="todos">Todos os Tipos</option>
+                            <option value="fixo">Fixo</option>
+                            <option value="variavel">Variável</option>
+                            <option value="emergencia">Emergência</option>
+                            <option value="investimento">Investimento</option>
+                        </select>
+                        <button class="btn-primary" id="btnFiltrarGastos">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaGastos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA DE RELATÓRIOS -->
+        <div id="telaRelatorios" style="display: none;">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chart-bar"></i> Relatórios Analíticos</h2>
+                <div class="dashboard-controls">
+                    <div class="date-filter">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="month" id="filtroMesRelatorio" class="form-control">
+                    </div>
+                    <button class="btn-primary" id="btnGerarRelatorioCompleto">
+                        <i class="fas fa-file-pdf"></i> Relatório Completo
+                    </button>
+                </div>
+            </div>
+
+            <div class="relatorios-content">
+                <div class="relatorio-card">
+                    <h3><i class="fas fa-chart-pie"></i> Comparativo de Turnos</h3>
+                    <div class="chart-container">
+                        <canvas id="turnosChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="relatorio-card">
+                    <h3><i class="fas fa-credit-card"></i> Formas de Pagamento por Turno</h3>
+                    <div class="chart-container">
+                        <canvas id="pagamentosChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="relatorio-card full-width">
+                    <h3><i class="fas fa-table"></i> Análise Detalhada por Turno</h3>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Turno</th>
+                                    <th>Total Vendas</th>
+                                    <th>Qtd Vendas</th>
+                                    <th>Ticket Médio</th>
+                                    <th>Dinheiro</th>
+                                    <th>Cartão</th>
+                                    <th>Pix</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaAnaliseTurnos">
+                                <tr>
+                                    <td><strong>Manhã</strong></td>
+                                    <td id="analiseManhaTotal">R$ 0,00</td>
+                                    <td id="analiseManhaQtd">0</td>
+                                    <td id="analiseManhaTicket">R$ 0,00</td>
+                                    <td id="analiseManhaDinheiro">R$ 0,00</td>
+                                    <td id="analiseManhaCartao">R$ 0,00</td>
+                                    <td id="analiseManhaPix">R$ 0,00</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tarde</strong></td>
+                                    <td id="analiseTardeTotal">R$ 0,00</td>
+                                    <td id="analiseTardeQtd">0</td>
+                                    <td id="analiseTardeTicket">R$ 0,00</td>
+                                    <td id="analiseTardeDinheiro">R$ 0,00</td>
+                                    <td id="analiseTardeCartao">R$ 0,00</td>
+                                    <td id="analiseTardePix">R$ 0,00</td>
+                                </tr>
+                                <tr style="background-color: rgba(90, 81, 0, 0.05);">
+                                    <td><strong>Total Geral</strong></td>
+                                    <td id="analiseTotalGeral">R$ 0,00</td>
+                                    <td id="analiseTotalQtd">0</td>
+                                    <td id="analiseTotalTicket">R$ 0,00</td>
+                                    <td id="analiseTotalDinheiro">R$ 0,00</td>
+                                    <td id="analiseTotalCartao">R$ 0,00</td>
+                                    <td id="analiseTotalPix">R$ 0,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA DE BOLETOS -->
+        <div id="telaBoletos" style="display: none;">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-file-invoice"></i> Controle de Boletos</h2>
+                <div class="dashboard-controls">
+                    <div class="date-filter">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="month" id="filtroMesBoletos" class="form-control">
+                    </div>
+                    <button class="btn-secondary" id="btnRelatorioBoletos">
+                        <i class="fas fa-file-pdf"></i> Relatório
+                    </button>
+                </div>
+            </div>
+
+            <div class="boletos-section">
+                <div class="fornecedores-form-container">
+                    <h3><i class="fas fa-truck"></i> Cadastro de Fornecedor</h3>
+                    <form id="formFornecedor" class="fornecedores-form">
+                        <div class="form-group-fornecedor">
+                            <label><i class="fas fa-building"></i> Nome do Fornecedor</label>
+                            <input type="text" id="fornecedorNome" class="fornecedor-input"
+                                placeholder="Ex: Companhia de Água" required>
+                        </div>
+                        <div class="form-group-fornecedor">
+                            <label><i class="fas fa-list"></i> Categoria</label>
+                            <select id="fornecedorCategoria" class="fornecedor-input" required>
+                                <option value="">Selecione...</option>
+                                <option value="servicos">Serviços</option>
+                                <option value="insumos">Insumos</option>
+                                <option value="aluguel">Aluguel</option>
+                                <option value="equipamentos">Equipamentos</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group-fornecedor">
+                            <label><i class="fas fa-phone"></i> Contato (opcional)</label>
+                            <input type="text" id="fornecedorContato" class="fornecedor-input"
+                                placeholder="Telefone ou email">
+                        </div>
+                        <div class="form-group-fornecedor">
+                            <label><i class="fas fa-align-left"></i> Observação (opcional)</label>
+                            <textarea id="fornecedorObservacao" class="fornecedor-input fornecedor-textarea"
+                                placeholder="Digite uma observação..."></textarea>
+                        </div>
+                        <button type="submit" id="btnRegistrarFornecedor" class="btn-fornecedor">
+                            <i class="fas fa-save"></i> Cadastrar Fornecedor
+                        </button>
+                    </form>
+
+                    <div class="fornecedores-lista">
+                        <h4><i class="fas fa-list"></i> Fornecedores Cadastrados</h4>
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Categoria</th>
+                                        <th>Contato</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listaFornecedores"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="boletos-form-container">
+                    <h3><i class="fas fa-file-invoice-dollar"></i> <span id="formBoletoTitulo">Registrar Boleto</span>
+                    </h3>
+                    <form id="formBoleto" class="boletos-form">
+                        <div class="form-group-boleto">
+                            <label><i class="fas fa-truck"></i> Fornecedor</label>
+                            <div class="pesquisa-fornecedor">
+                                <input type="text" id="pesquisaFornecedor" class="boleto-input"
+                                    placeholder="Digite para pesquisar..." autocomplete="off">
+                                <div id="resultadosPesquisa" class="resultados-pesquisa"></div>
+                            </div>
+                            <select id="boletoFornecedor" class="boleto-input" style="display: none;" required>
+                                <option value="">Selecione um fornecedor...</option>
+                            </select>
+                        </div>
+                        <div class="form-group-boleto">
+                            <label><i class="fas fa-tag"></i> Descrição</label>
+                            <input type="text" id="boletoDescricao" class="boleto-input"
+                                placeholder="Ex: Conta de água - Junho" required>
+                        </div>
+                        <div class="form-group-boleto">
+                            <label><i class="fas fa-dollar-sign"></i> Valor</label>
+                            <input type="text" id="boletoValor" class="boleto-input" placeholder="R$ 0,00" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group-50">
+                                <label><i class="fas fa-calendar-alt"></i> Vencimento</label>
+                                <input type="date" id="boletoDataVencimento" class="boleto-input" required>
+                            </div>
+                            <div class="form-group-50">
+                                <label><i class="fas fa-calendar-check"></i> Pagamento</label>
+                                <input type="date" id="boletoDataPagamento" class="boleto-input">
+                            </div>
+                        </div>
+                        <div class="form-group-boleto">
+                            <label><i class="fas fa-info-circle"></i> Status</label>
+                            <select id="boletoStatus" class="boleto-input" required>
+                                <option value="pendente">Pendente</option>
+                                <option value="pago">Pago</option>
+                                <option value="atrasado">Atrasado</option>
+                            </select>
+                        </div>
+                        <div class="form-group-boleto">
+                            <label><i class="fas fa-align-left"></i> Observação (opcional)</label>
+                            <textarea id="boletoObservacao" class="boleto-input boleto-textarea"
+                                placeholder="Digite uma observação..."></textarea>
+                        </div>
+                        <button type="submit" id="btnRegistrarBoleto" class="btn-boleto">
+                            <i class="fas fa-save"></i> Registrar Boleto
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="boletos-table-container">
+                <div class="table-header-boletos">
+                    <h3><i class="fas fa-list"></i> Boletos do Mês</h3>
+                    <div class="filtros-boletos">
+                        <select id="filtroStatusBoleto" class="form-control">
+                            <option value="todos">Todos os Status</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="pago">Pago</option>
+                            <option value="atrasado">Atrasado</option>
+                        </select>
+                        <select id="filtroFornecedorBoleto" class="form-control">
+                            <option value="todos">Todos os Fornecedores</option>
+                        </select>
+                        <button class="btn-primary" id="btnFiltrarBoletos">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fornecedor</th>
+                                <th>Descrição</th>
+                                <th>Vencimento</th>
+                                <th>Pagamento</th>
+                                <th>Status</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaBoletos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL HISTÓRICO FORNECEDOR -->
+    <div id="modalFornecedor" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-history"></i> Histórico de Boletos - <span id="modalFornecedorNome"></span></h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="fornecedor-info">
+                    <h4><i class="fas fa-chart-bar"></i> Estatísticas</h4>
+                    <div class="fornecedor-stats">
+                        <div class="stat-card">
+                            <span><i class="fas fa-dollar-sign"></i> Total Gasto</span>
+                            <strong id="totalGastoFornecedor">R$ 0,00</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span><i class="fas fa-clock"></i> Pendentes</span>
+                            <strong id="boletosPendentes">0</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span><i class="fas fa-check-circle"></i> Pagos</span>
+                            <strong id="boletosPagos">0</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span><i class="fas fa-chart-line"></i> Média</span>
+                            <strong id="mediaValorBoletos">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filtros-historico">
+                    <select id="filtroAnoHistorico" class="form-control">
+                        <option value="todos">Todos os anos</option>
+                    </select>
+                    <select id="filtroStatusHistorico" class="form-control">
+                        <option value="todos">Todos os status</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="pago">Pago</option>
+                        <option value="atrasado">Atrasado</option>
+                    </select>
+                    <button class="btn-primary" id="btnExportarHistorico">
+                        <i class="fas fa-download"></i> Exportar CSV
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Vencimento</th>
+                                <th>Pagamento</th>
+                                <th>Status</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaHistoricoBoletos"></tbody>
+                    </table>
+                </div>
+
+                <div class="resumo-historico">
+                    <div class="resumo-item">
+                        <span><i class="fas fa-arrow-up"></i> Maior Boleto</span>
+                        <strong id="maiorBoleto">R$ 0,00</strong>
+                    </div>
+                    <div class="resumo-item">
+                        <span><i class="fas fa-arrow-down"></i> Menor Boleto</span>
+                        <strong id="menorBoleto">R$ 0,00</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="btnFecharHistorico">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT - SISTEMA ORIGINAL (SEM SUPABASE) -->
+    <script src="js/config/constants.js"></script>
+    <script src="js/config/database.js"></script>
+    <script src="js/core/utils.js"></script>
+    <script src="js/core/notifications.js"></script>
+    <script src="js/core/theme.js"></script>
+    <script src="js/core/auth.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/pdf.service.js"></script>
+    <script src="js/services/export.service.js"></script>
+    <script src="js/modules/vendas/vendas.helpers.js"></script>
+    <script src="js/modules/vendas/vendas.ui.js"></script>
+    <script src="js/modules/vendas/vendas.js"></script>
+    <script src="js/modules/gastos/gastos.helpers.js"></script>
+    <script src="js/modules/gastos/gastos.charts.js"></script>
+    <script src="js/modules/gastos/gastos.ui.js"></script>
+    <script src="js/modules/gastos/gastos.js"></script>
+    <script src="js/modules/relatorios/relatorios.charts.js"></script>
+    <script src="js/modules/relatorios/relatorios.pdf.js"></script>
+    <script src="js/modules/relatorios/relatorios.ui.js"></script>
+    <script src="js/modules/relatorios/relatorios.js"></script>
+    <script src="js/modules/boletos/boletos.helpers.js"></script>
+    <script src="js/modules/boletos/historico.modal.js"></script>
+    <script src="js/modules/boletos/fornecedores.js"></script>
+    <script src="js/modules/boletos/boletos.ui.js"></script>
+    <script src="js/modules/boletos/boletos.js"></script>
+
+    <!-- Serviços -->
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/supabase.service.js"></script>
+    <script src="js/services/supabase.data.service.js"></script> <!-- NOVO -->
+    <script src="js/services/pdf.service.js"></script>
+    <script src="js/services/export.service.js"></script>
+
+    <!-- Admin Module -->
+    <script src="js/modules/admin.js"></script>
+
+    <script src="js/app.js"></script>
+
+
+    <!-- MODAL DO PAINEL ADMIN -->
+    <div id="modalAdmin" class="modal">
+        <div class="modal-content modal-admin">
+            <div class="modal-header">
+                <h3><i class="fas fa-users-cog"></i> Painel Administrativo</h3>
+                <button class="modal-close" id="btnFecharModalAdmin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- CADASTRO DE NOVO USUÁRIO -->
+                <div class="admin-section">
+                    <h4><i class="fas fa-user-plus"></i> Cadastrar Novo Usuário</h4>
+                    <div class="admin-form">
+                        <div class="form-group">
+                            <label>Nome completo</label>
+                            <input type="text" id="novoNome" class="form-control" placeholder="Ex: João Silva">
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="email" id="novoEmail" class="form-control" placeholder="usuario@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" id="novoSenha" class="form-control" placeholder="******">
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de usuário</label>
+                            <select id="novoTipo" class="form-control">
+                                <option value="usuario">Usuário comum</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
+                        <button id="btnCadastrarUsuario" class="btn-primary">
+                            <i class="fas fa-save"></i> Cadastrar Usuário
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LISTA DE USUÁRIOS -->
+                <div class="admin-section">
+                    <h4><i class="fas fa-list"></i> Usuários Cadastrados</h4>
+                    <div class="table-container">
+                        <table class="table" id="tabelaUsuarios">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>E-mail</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaUsuarios">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 2rem;">
+                                        <i class="fas fa-spinner fa-spin"></i> Carregando...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="btnFecharAdmin">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

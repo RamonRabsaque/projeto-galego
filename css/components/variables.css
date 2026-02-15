@@ -1,0 +1,24 @@
+/* ========== VARIÁVEIS GLOBAIS ========== */
+:root {
+    --vermelho-principal: #5a0000;
+    --vermelho-hover: #8a0000;
+    --vermelho-secundario: #770000;
+    --amarelo-principal: #ffb800;
+    --amarelo-escuro: #e0a300;
+    --roxo-fundo: #b9c6f8;
+    --cinza-claro: #e0e5ff;
+    --cinza-box: #f5f5f5;
+    --cinza-borda: #c4c4c4;
+    --cinza-texto: #555;
+    --branco: #ffffff;
+    --verde-sucesso: #4caf50;
+    --azul-info: #2196f3;
+    --vermelho-alerta: #f44336;
+    --laranja-manha: #ff9800;
+    --azul-tarde: #2196f3;
+    --fonte-principal: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --sombra-destaque: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --borda-arredondada: 12px;
+    --transicao-padrao: all 0.3s ease;
+}

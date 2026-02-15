@@ -1,0 +1,185 @@
+/* ========== TURNOS ========== */
+.turno-resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.turno-card {
+    background: var(--branco);
+    border-radius: var(--borda-arredondada);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao-padrao);
+    border-top: 4px solid transparent;
+}
+
+.turno-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-destaque);
+}
+
+.turno-card.manha {
+    border-top-color: var(--laranja-manha);
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+}
+
+.turno-card.tarde {
+    border-top-color: var(--azul-tarde);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.05) 100%);
+}
+
+.turno-card.total-dia {
+    border-top-color: var(--verde-sucesso);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+}
+
+.turno-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--cinza-borda);
+}
+
+.turno-header i {
+    font-size: 1.5rem;
+}
+
+.turno-card.manha .turno-header i {
+    color: var(--laranja-manha);
+}
+
+.turno-card.tarde .turno-header i {
+    color: var(--azul-tarde);
+}
+
+.turno-card.total-dia .turno-header i {
+    color: var(--verde-sucesso);
+}
+
+.turno-header h3 {
+    color: var(--cinza-texto);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.turno-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.turno-metrica {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.turno-metrica span {
+    color: var(--cinza-texto);
+    font-size: 0.9rem;
+}
+
+.turno-metrica strong {
+    font-size: 1.2rem;
+    color: var(--vermelho-principal);
+}
+
+.turno-card.manha .turno-metrica strong {
+    color: var(--laranja-manha);
+}
+
+.turno-card.tarde .turno-metrica strong {
+    color: var(--azul-tarde);
+}
+
+.turno-card.total-dia .turno-metrica strong {
+    color: var(--verde-sucesso);
+}
+
+/* ========== SUMMARY CARDS ========== */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: var(--branco);
+    border-radius: var(--borda-arredondada);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao-padrao);
+    border-left: 4px solid transparent;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-destaque);
+}
+
+.summary-card.total {
+    border-left-color: var(--vermelho-principal);
+    background: linear-gradient(135deg, rgba(90, 0, 0, 0.05) 0%, rgba(90, 0, 0, 0.02) 100%);
+}
+
+.summary-card.mensal {
+    border-left-color: var(--azul-info);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.02) 100%);
+}
+
+.summary-card.categoria {
+    border-left-color: var(--verde-sucesso);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, rgba(76, 175, 80, 0.02) 100%);
+}
+
+.summary-card.meta {
+    border-left-color: var(--amarelo-principal);
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.05) 0%, rgba(255, 184, 0, 0.02) 100%);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--cinza-texto);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--vermelho-principal);
+    margin-bottom: 0.5rem;
+}
+
+/* ========== RELATÓRIO CARDS ========== */
+.relatorio-card {
+    background: var(--branco);
+    border-radius: var(--borda-arredondada);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-suave);
+}
+
+.relatorio-card h3 {
+    color: var(--vermelho-principal);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.relatorio-card.full-width {
+    grid-column: 1 / -1;
+}

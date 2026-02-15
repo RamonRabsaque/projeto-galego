@@ -1,0 +1,69 @@
+/* ========== NOTIFICAÇÕES ========== */
+#notification-area {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notification {
+    background: var(--branco);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: var(--sombra-destaque);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    animation: slideInRight 0.3s ease-out;
+    max-width: 350px;
+    border-left: 4px solid transparent;
+    transition: var(--transicao-padrao);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification.success {
+    border-left-color: var(--verde-sucesso);
+}
+
+.notification.error {
+    border-left-color: var(--vermelho-alerta);
+}
+
+.notification.info {
+    border-left-color: var(--azul-info);
+}
+
+.notification.warning {
+    border-left-color: var(--amarelo-principal);
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification.success i {
+    color: var(--verde-sucesso);
+}
+
+.notification.error i {
+    color: var(--vermelho-alerta);
+}
+
+.notification.info i {
+    color: var(--azul-info);
+}
+
+.notification.warning i {
+    color: var(--amarelo-principal);
+}
